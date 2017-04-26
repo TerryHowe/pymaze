@@ -89,3 +89,4 @@ ENV/
 .ropeproject
 MANIFEST
 .*.swp
+db.sqlite3
