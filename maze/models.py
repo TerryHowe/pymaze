@@ -15,6 +15,12 @@ class Passage(models.Model):
 	room_x = models.IntegerField()
 	room_y = models.IntegerField()
 	direction = models.CharField(max_length=1, choices=DIRECTION)
-	destination = models.OneToOneField('self', on_delete=models.CASCADE)
+	destination = models.OneToOneField('self',
+		null=True, blank=True,
+		on_delete=models.CASCADE)
+
+	def __repr__(self):
+		return 'Passage(id=%d, room_x=%d, room_y=%d, direction=%s, destination=%d)' % (self.id, self.room_x, self.room_y, self.direction, self.destination.id)
+
 	class Meta:
 		unique_together = (('room_x', 'room_y', 'direction'),)
