@@ -19,6 +19,9 @@ class Passage(models.Model):
 		null=True, blank=True,
 		on_delete=models.CASCADE)
 
+	def __str__(self):
+		return(self.__repr__())
+
 	def __repr__(self):
 		return 'Passage(id=%d, room_x=%d, room_y=%d, direction=%s, destination=%d)' % (self.id, self.room_x, self.room_y, self.direction, self.destination.id)
 
