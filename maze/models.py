@@ -4,20 +4,26 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
-DIRECTION = (
-	('N', 'North'),
-	('E', 'East'),
-	('S', 'South'),
-	('W', 'West'),
-)
 
 class Passage(models.Model):
+	DIRECTIONS = (
+		('N', 'North'),
+		('E', 'East'),
+		('S', 'South'),
+		('W', 'West'),
+		('U', 'Up'),
+		('D', 'Down'),
+	)
 	room_x = models.IntegerField()
 	room_y = models.IntegerField()
-	direction = models.CharField(max_length=1, choices=DIRECTION)
+	direction = models.CharField(max_length=1, choices=DIRECTIONS)
 	destination = models.OneToOneField('self',
 		null=True, blank=True,
 		on_delete=models.CASCADE)
+
+	@classmethod
+	def get_direction(cls, direction):
+		return dict(cls.DIRECTIONS).get(direction, 'Nowhere')
 
 	def __str__(self):
 		return(self.__repr__())
