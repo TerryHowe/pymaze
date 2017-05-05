@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .models import Passage
+import maze
 
 
 def index(request):
@@ -15,10 +16,12 @@ def index(request):
 def room(request, room_x, room_y, direction):
 	passages = Passage.objects.filter(room_x=int(room_x), room_y=int(room_y))
 	template = loader.get_template('maze/room.html')
+	theMaze = maze.Maze()
 	context = {
 		'room_x': room_x,
 		'room_y': room_y,
 		'direction': Passage.get_direction(direction),
 		'passages': passages,
+		'maze_view': theMaze.render(room_x, room_y, direction),
 	}
 	return HttpResponse(template.render(context, request))
