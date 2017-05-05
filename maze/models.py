@@ -12,7 +12,9 @@ DIRECTION = (
 )
 
 class Passage(models.Model):
-	room_x = models.IntegerField(primary_key=True)
-	room_y = models.IntegerField(primary_key=True)
-	direction = models.CharField(max_length=1, choices=DIRECTION, primary_key=True)
-	destination = models.ForeignKey('self')
+	room_x = models.IntegerField()
+	room_y = models.IntegerField()
+	direction = models.CharField(max_length=1, choices=DIRECTION)
+	destination = models.OneToOneField('self', on_delete=models.CASCADE)
+	class Meta:
+		unique_together = (('room_x', 'room_y', 'direction'),)
