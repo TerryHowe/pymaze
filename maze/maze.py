@@ -278,13 +278,19 @@ class Maze(object):
 			t.append(LEFT)
 		if room.get(direction, None):
 			forward_room = self.get_forward_room(room_x, room_y, direction)
+			if forward_room.get(self.LEFT_DIRECTION[direction], None):
+				left_room = self.get_forward_left_room(room_x, room_y, direction)
+				#if not left_room.get(direction, None):
+				#	t.append(FORWARD_LEFT)
+			else:
+				t.append(FORWARD_LEFT)
 			if not forward_room.get(direction, None):
 				t.append(FORWARD_FORWARD)
-			left_room = self.get_forward_left_room(room_x, room_y, direction)
-			if not left_room.get(direction, None):
-				t.append(FORWARD_LEFT)
-			right_room = self.get_forward_right_room(room_x, room_y, direction)
-			if not right_room.get(direction, None):
+			if forward_room.get(self.RIGHT_DIRECTION[direction], None):
+				right_room = self.get_forward_right_room(room_x, room_y, direction)
+				#if not right_room.get(direction, None):
+					#t.append(FORWARD_RIGHT)
+			else:
 				t.append(FORWARD_RIGHT)
 		else:
 			t.append(FORWARD)
