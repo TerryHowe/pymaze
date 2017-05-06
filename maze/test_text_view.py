@@ -130,6 +130,27 @@ R01_SOUTH = """
   /                            \\ 
  /                              \\
 """
+R10_WEST = """
+ \                              /
+  \                            / 
+   +                          +  
+   |\                         |  
+   | \                        |  
+   |  +--------------------+--|  
+   |  |                    |  |  
+   |  |                    |  |  
+   |  |                    |  |  
+   |  |                    |  |  
+   |  |                    |  |  
+   |  |                    |  |  
+   |  |                    |  |  
+   |  +--------------------+--|  
+   | /                        |  
+   |/                         |  
+   +                          +  
+  /                            \\ 
+ /                              \\
+"""
 
 class TestTextView(unittest.TestCase):
 
@@ -163,6 +184,10 @@ class TestTextView(unittest.TestCase):
 	def test_render_r01_south(self):
 		sut = text_view.TextView()
 		self.assertEqual(R01_SOUTH, sut.render(self.r01, 'S'))
+
+	def test_render_r10_west(self):
+		sut = text_view.TextView()
+		self.assertEqual(R10_WEST, sut.render(self.r10, 'W'))
 
 if __name__ == '__main__':
 	unittest.main()
