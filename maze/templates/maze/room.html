@@ -1,10 +1,5 @@
 <h1>Looking {{direction_long}} from {{room_x}}, {{room_y}}.</h1>
 
-<ul>
-{% for passage in passages %}
-<li><a href="/maze/{{passage.destination.room_x}}/{{passage.destination.room_y}}/{{passage.direction}}">{{passage}}</a></li>
-{% endfor %}
-</ul>
 <pre>
 {{maze_view}}
 </pre>

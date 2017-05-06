@@ -1,26 +1,5 @@
 import models
 
-MAZE_VIEW = """
- \                              /
-  \                            /
-   +--------------------------+
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   |                          |
-   +--------------------------+
-  /                            \\
- /                              \\
-"""
 VIEW = """
                                  
                                  
@@ -105,6 +84,48 @@ FORWARD = """
                                  
                                  
 """
+LEFT_FORWARD_RIGHT = """
+                                 
+                                 
+ --+                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+   |                             
+ --+                             
+                                 
+                                 
+"""
+RIGHT_FORWARD_LEFT = """
+                                 
+                                 
+                              +--
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              |  
+                              +--
+                                 
+                                 
+"""
 
 
 class Maze(object):
@@ -135,17 +156,14 @@ class Maze(object):
 
 	def render(self, room_x, room_y, direction):
 		room = self.map.get(int(room_x), {}).get(int(room_y), {})
-		left_room = room.get(self.LEFT_DIRECTION[direction], None)
-		forward_room = room.get(direction, None)
-		right_room = room.get(self.RIGHT_DIRECTION[direction], None)
 		t = [VIEW]
-		if not left_room:
+		if not room.get(self.LEFT_DIRECTION[direction], None):
 			t.append(LEFT)
-		if not forward_room:
+		if not room.get(direction, None):
 			t.append(FORWARD)
-		if not right_room:
+		if not room.get(self.RIGHT_DIRECTION[direction], None):
 			t.append(RIGHT)
-		return ''.join([max(x) for x in zip(*t)]) + str(left_room) + str(forward_room) + str(right_room)
+		return ''.join([max(x) for x in zip(*t)])
 
 	def get_left_direction(self, direction):
 		return self.LEFT_DIRECTION[direction]
