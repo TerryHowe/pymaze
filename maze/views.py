@@ -15,7 +15,7 @@ def index(request):
 
 def room(request, room_x, room_y, direction):
 	template = loader.get_template('maze/room.html')
-	theMaze = maze.Maze()
+	theMaze = maze.Maze(room_x, room_y, direction)
 	context = {
 		'room_x': room_x,
 		'room_y': room_y,

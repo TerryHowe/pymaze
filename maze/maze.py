@@ -246,7 +246,10 @@ class Maze(object):
 		'S': 'W',
 		'W': 'N',
 	}
-	def __init__(self):
+	def __init__(self, room_x, room_y, direction):
+		self.room_x = int(room_x)
+		self.room_y = int(room_y)
+		self.direction = direction
 		self.map = {}
 		for p in models.Passage.objects.all():
 			if p.room_x not in self.map:
