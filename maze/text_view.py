@@ -247,15 +247,15 @@ class TextView(object):
 			t.append(LEFT)
 		if forward_room:
 			forward_left_room = forward_room.go_left(direction)
-			forward_right_room = forward_room.go_right(direction)
 			if forward_left_room:
-			#	if not forward_left_room.get(direction, None):
-			#		t.append(FORWARD_LEFT_FORWARD_RIGHT)
+				if not forward_left_room.go_forward(direction):
+					t.append(FORWARD_LEFT_FORWARD_RIGHT)
 				pass
 			else:
 				t.append(FORWARD_LEFT)
 			if not forward_room.go_forward(direction):
 				t.append(FORWARD_FORWARD)
+			forward_right_room = forward_room.go_right(direction)
 			#if forward_right_room:
 			#	if not forward_right_room.get(direction, None):
 			#		t.append(FORWARD_RIGHT_FORWARD_LEFT)
