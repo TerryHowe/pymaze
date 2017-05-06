@@ -259,7 +259,6 @@ class TextView(object):
 					t.append(FORWARD_RIGHT_FORWARD_LEFT)
 			else:
 				t.append(FORWARD_RIGHT)
-			pass
 		else:
 			t.append(FORWARD)
 		if right_room:
@@ -267,8 +266,8 @@ class TextView(object):
 				t.append(RIGHT_FORWARD_LEFT)
 		else:
 			t.append(RIGHT)
-		print
-		print "Direction: " + direction
-		print ''.join([max(x) for x in zip(*t)])
-		print
+		#print
+		#print "Direction: " + direction
+		#print ''.join([max(x) for x in zip(*t)])
+		#print
 		return ''.join([max(x) for x in zip(*t)])
