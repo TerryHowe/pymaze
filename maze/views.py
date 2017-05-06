@@ -15,13 +15,21 @@ def index(request):
 
 def room(request, room_x, room_y, direction):
 	passages = Passage.objects.filter(room_x=int(room_x), room_y=int(room_y))
+	destination = None
+	for passage in passages:
+		if passage.direction == direction:
+			destination = passage.destination
 	template = loader.get_template('maze/room.html')
 	theMaze = maze.Maze()
 	context = {
 		'room_x': room_x,
 		'room_y': room_y,
-		'direction': Passage.get_direction(direction),
+		'direction': direction,
+		'destination': destination,
+		'direction_long': Passage.get_direction(direction),
 		'passages': passages,
 		'maze_view': theMaze.render(room_x, room_y, direction),
+		'left_direction': theMaze.get_left_direction(direction),
+		'right_direction': theMaze.get_right_direction(direction),
 	}
 	return HttpResponse(template.render(context, request))
