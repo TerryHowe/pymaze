@@ -154,14 +154,45 @@ class Maze(object):
 				y[p.direction] = {}
 			y[p.direction] = p.destination
 
+	def get_room(self, room_x, room_y):
+		return self.map.get(room_x, {}).get(room_y, {})
+
+	def get_right_room(self, room_x, room_y, direction):
+		if (direction == 'N'):
+			return(self.get_room(room_x+1, room_y))
+		elif (direction == 'E'):
+			return(self.get_room(room_x, room_y-1))
+		elif (direction == 'S'):
+			return(self.get_room(room_x-1, room_y))
+		return(self.get_room(room_x, room_y+1))
+
+	def get_left_room(self, room_x, room_y, direction):
+		if (direction == 'N'):
+			return(self.get_room(room_x-1, room_y))
+		elif (direction == 'E'):
+			return(self.get_room(room_x, room_y+1))
+		elif (direction == 'S'):
+			return(self.get_room(room_x+1, room_y))
+		return(self.get_room(room_x, room_y-1))
+
 	def render(self, room_x, room_y, direction):
-		room = self.map.get(int(room_x), {}).get(int(room_y), {})
+		room_x = int(room_x)
+		room_y = int(room_y)
+		room = self.get_room(room_x, room_y)
 		t = [VIEW]
-		if not room.get(self.LEFT_DIRECTION[direction], None):
+		if room.get(self.LEFT_DIRECTION[direction], None):
+			left_room = self.get_left_room(room_x, room_y, direction)
+			if not left_room.get(direction, None):
+				t.append(LEFT_FORWARD_RIGHT)
+		else:
 			t.append(LEFT)
 		if not room.get(direction, None):
 			t.append(FORWARD)
-		if not room.get(self.RIGHT_DIRECTION[direction], None):
+		if room.get(self.RIGHT_DIRECTION[direction], None):
+			right_room = self.get_right_room(room_x, room_y, direction)
+			if not right_room.get(direction, None):
+				t.append(RIGHT_FORWARD_LEFT)
+		else:
 			t.append(RIGHT)
 		return ''.join([max(x) for x in zip(*t)])
 
