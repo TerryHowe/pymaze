@@ -189,6 +189,48 @@ FORWARD_RIGHT = """
                                  
                                  
 """
+FORWARD_LEFT_FORWARD_RIGHT = """
+                                 
+                                 
+                                 
+                                 
+                                 
+    --+                          
+      |                          
+      |                          
+      |                          
+      |                          
+      |                          
+      |                          
+      |                          
+    --+                          
+                                 
+                                 
+                                 
+                                 
+                                 
+"""
+FORWARD_RIGHT_FORWARD_LEFT = """
+                                 
+                                 
+                                 
+                                 
+                                 
+                           +--   
+                           |     
+                           |     
+                           |     
+                           |     
+                           |     
+                           |     
+                           |     
+                           +--   
+                                 
+                                 
+                                 
+                                 
+                                 
+"""
 
 
 class Maze(object):
@@ -280,16 +322,16 @@ class Maze(object):
 			forward_room = self.get_forward_room(room_x, room_y, direction)
 			if forward_room.get(self.LEFT_DIRECTION[direction], None):
 				left_room = self.get_forward_left_room(room_x, room_y, direction)
-				#if not left_room.get(direction, None):
-				#	t.append(FORWARD_LEFT)
+				if not left_room.get(direction, None):
+					t.append(FORWARD_LEFT_FORWARD_RIGHT)
 			else:
 				t.append(FORWARD_LEFT)
 			if not forward_room.get(direction, None):
 				t.append(FORWARD_FORWARD)
 			if forward_room.get(self.RIGHT_DIRECTION[direction], None):
 				right_room = self.get_forward_right_room(room_x, room_y, direction)
-				#if not right_room.get(direction, None):
-					#t.append(FORWARD_RIGHT)
+				if not right_room.get(direction, None):
+					t.append(FORWARD_RIGHT_FORWARD_LEFT)
 			else:
 				t.append(FORWARD_RIGHT)
 		else:
