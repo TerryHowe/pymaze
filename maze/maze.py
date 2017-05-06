@@ -126,6 +126,69 @@ RIGHT_FORWARD_LEFT = """
                                  
                                  
 """
+FORWARD_FORWARD = """
+                                 
+                                 
+                                 
+                                 
+                                 
+      +--------------------+     
+      |                    |     
+      |                    |     
+      |                    |     
+      |                    |     
+      |                    |     
+      |                    |     
+      |                    |     
+      +--------------------+     
+                                 
+                                 
+                                 
+                                 
+                                 
+"""
+FORWARD_LEFT = """
+                                 
+                                 
+   +                             
+   |\                            
+   | \                           
+   |  +                          
+   |  |                          
+   |  |                          
+   |  |                          
+   |  |                          
+   |  |                          
+   |  |                          
+   |  |                          
+   |  +                          
+   | /                           
+   |/                            
+   +                             
+                                 
+                                 
+"""
+FORWARD_RIGHT = """
+                                 
+                                 
+                              +  
+                             /|  
+                            / |  
+                           +  |  
+                           |  |  
+                           |  |  
+                           |  |  
+                           |  |  
+                           |  |  
+                           |  |  
+                           |  |  
+                           +  |  
+                            \ |  
+                             \|  
+                              +  
+                                 
+                                 
+"""
 
 
 class Maze(object):
@@ -157,6 +220,33 @@ class Maze(object):
 	def get_room(self, room_x, room_y):
 		return self.map.get(room_x, {}).get(room_y, {})
 
+	def get_forward_room(self, room_x, room_y, direction):
+		if (direction == 'N'):
+			return(self.get_room(room_x, room_y+1))
+		elif (direction == 'E'):
+			return(self.get_room(room_x+1, room_y))
+		elif (direction == 'S'):
+			return(self.get_room(room_x, room_y-1))
+		return(self.get_room(room_x-1, room_y))
+
+	def get_forward_right_room(self, room_x, room_y, direction):
+		if (direction == 'N'):
+			return(self.get_room(room_x+1, room_y+1))
+		elif (direction == 'E'):
+			return(self.get_room(room_x+1, room_y-1))
+		elif (direction == 'S'):
+			return(self.get_room(room_x-1, room_y-1))
+		return(self.get_room(room_x-1, room_y+1))
+
+	def get_forward_left_room(self, room_x, room_y, direction):
+		if (direction == 'N'):
+			return(self.get_room(room_x-1, room_y+1))
+		elif (direction == 'E'):
+			return(self.get_room(room_x+1, room_y+1))
+		elif (direction == 'S'):
+			return(self.get_room(room_x+1, room_y-1))
+		return(self.get_room(room_x-1, room_y-1))
+
 	def get_right_room(self, room_x, room_y, direction):
 		if (direction == 'N'):
 			return(self.get_room(room_x+1, room_y))
@@ -186,7 +276,17 @@ class Maze(object):
 				t.append(LEFT_FORWARD_RIGHT)
 		else:
 			t.append(LEFT)
-		if not room.get(direction, None):
+		if room.get(direction, None):
+			forward_room = self.get_forward_room(room_x, room_y, direction)
+			if not forward_room.get(direction, None):
+				t.append(FORWARD_FORWARD)
+			left_room = self.get_forward_left_room(room_x, room_y, direction)
+			if not left_room.get(direction, None):
+				t.append(FORWARD_LEFT)
+			right_room = self.get_forward_right_room(room_x, room_y, direction)
+			if not right_room.get(direction, None):
+				t.append(FORWARD_RIGHT)
+		else:
 			t.append(FORWARD)
 		if room.get(self.RIGHT_DIRECTION[direction], None):
 			right_room = self.get_right_room(room_x, room_y, direction)
