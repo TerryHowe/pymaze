@@ -14,11 +14,6 @@ def index(request):
 	return HttpResponse("Welcome to the maze.")
 
 def room(request, room_x, room_y, direction):
-	passages = Passage.objects.filter(room_x=int(room_x), room_y=int(room_y))
-	destination = None
-	for passage in passages:
-		if passage.direction == direction:
-			destination = passage.destination
 	template = loader.get_template('maze/room.html')
 	theMaze = maze.Maze()
 	context = {
@@ -26,7 +21,7 @@ def room(request, room_x, room_y, direction):
 		'room_y': room_y,
 		'direction': direction,
 		'direction_long': Passage.get_direction(direction),
-		'destination': destination,
+		'destination': theMaze.get_destination(room_x, room_y, direction),
 		'maze_view': theMaze.render(room_x, room_y, direction),
 		'left_direction': theMaze.get_left_direction(direction),
 		'right_direction': theMaze.get_right_direction(direction),

@@ -349,3 +349,12 @@ class Maze(object):
 
 	def get_right_direction(self, direction):
 		return self.RIGHT_DIRECTION[direction]
+
+	def get_destination(self, room_x, room_y, direction):
+		room_x = int(room_x)
+		room_y = int(room_y)
+		passages = models.Passage.objects.filter(room_x=room_x, room_y=room_y)
+		for passage in passages:
+			if passage.direction == direction:
+					return passage.destination
+		return None
