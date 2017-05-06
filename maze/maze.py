@@ -349,5 +349,3 @@ class Maze(object):
 
 	def get_right_direction(self, direction):
 		return self.RIGHT_DIRECTION[direction]
-
-theMaze = Maze()
