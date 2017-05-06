@@ -1,4 +1,4 @@
-<h1>Looking {{direction}} from {{room_x}}, {{room_y}}.</h1>
+<h1>Looking {{direction_long}} from {{room_x}}, {{room_y}}.</h1>
 
 <ul>
 {% for passage in passages %}
@@ -8,3 +8,11 @@
 <pre>
 {{maze_view}}
 </pre>
+<a href="/maze/{{room_x}}/{{room_y}}/{{left_direction}}">left</a>
+{% if destination %}
+<a href="/maze/{{destination.room_x}}/{{destination.room_y}}/{{direction}}">forward</a>
+{% else %}
+forward
+{% endif %}
+<a href="/maze/{{room_x}}/{{room_y}}/{{right_direction}}">right</a>
+</ul>
