@@ -8,21 +8,31 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Passage
 import maze
+import text_view
 
 
 def index(request):
 	return HttpResponse("Welcome to the maze.")
 
 def room(request, room_x, room_y, direction):
+	room_x = int(room_x)
+	room_y = int(room_y)
 	template = loader.get_template('maze/room.html')
-	theMaze = maze.Maze(room_x, room_y, direction)
+	passages = Passage.objects.all()
+	theMaze = maze.Maze(passages)
+	room = theMaze.get_room(room_x, room_y)
+	destination = None
+	for passage in Passage.objects.filter(room_x=room_x, room_y=room_y):
+		if passage.direction == direction:
+			destination = passage.destination
+	maze_view = text_view.TextView().render(room, direction)
 	context = {
 		'room_x': room_x,
 		'room_y': room_y,
 		'direction': direction,
 		'direction_long': Passage.get_direction(direction),
-		'destination': theMaze.get_destination(room_x, room_y, direction),
-		'maze_view': theMaze.render(room_x, room_y, direction),
+		'destination': destination,
+		'maze_view': maze_view,
 		'left_direction': theMaze.get_left_direction(direction),
 		'right_direction': theMaze.get_right_direction(direction),
 	}
