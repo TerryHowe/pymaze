@@ -2,10 +2,10 @@
 class Room(object):
 	COMPASS = ['N','E','S','W']
 
-	def __init__(self, room_x, room_y, passages):
+	def __init__(self, room_x, room_y):
 		self.room_x = room_x
 		self.room_y = room_y
-		self.passages = passages
+		self.passages = {}
 
 	def go_forward(self, direction):
 		return(self.passages.get(direction, None))
