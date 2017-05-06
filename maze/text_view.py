@@ -240,9 +240,8 @@ class TextView(object):
 		forward_room = room.go_forward(direction)
 		right_room = room.go_right(direction)
 		if left_room:
-			#left_room = self.go_left_room(room_x, room_y, direction)
-			#if not left_room.get(direction, None):
-			#	t.append(LEFT_FORWARD_RIGHT)
+			if not left_room.go_forward(direction):
+				t.append(LEFT_FORWARD_RIGHT)
 			pass
 		else:
 			t.append(LEFT)
@@ -271,6 +270,7 @@ class TextView(object):
 		else:
 			t.append(RIGHT)
 		print
+		print "Direction: " + direction
 		print ''.join([max(x) for x in zip(*t)])
 		print
 		return ''.join([max(x) for x in zip(*t)])
