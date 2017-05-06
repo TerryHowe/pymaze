@@ -1,5 +1,4 @@
 import unittest
-import mock
 
 import room
 import text_view
