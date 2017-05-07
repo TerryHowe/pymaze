@@ -32,6 +32,32 @@ class TestRoom(unittest.TestCase):
         self.assertIsNone(self.r00.go_right('S'))
         self.assertEqual(self.r01, self.r00.go_right('W'))
 
+    def test_get_left_direction(self):
+        self.assertEqual('W', self.r00.get_left_direction('N'))
+        self.assertEqual('N', self.r00.get_left_direction('E'))
+        self.assertEqual('E', self.r00.get_left_direction('S'))
+        self.assertEqual('S', self.r00.get_left_direction('W'))
+
+    def test_get_right_direction(self):
+        self.assertEqual('E', self.r00.get_right_direction('N'))
+        self.assertEqual('S', self.r00.get_right_direction('E'))
+        self.assertEqual('W', self.r00.get_right_direction('S'))
+        self.assertEqual('N', self.r00.get_right_direction('W'))
+
+    def test_get_destinations(self):
+        self.assertEqual(
+			{'forward': '0/1/N', 'left': '0/0/W', 'right': '0/0/E'},
+			self.r00.get_destinations('N'))
+        self.assertEqual(
+			{'forward': '1/0/E', 'left': '0/0/N', 'right': '0/0/S'},
+			self.r00.get_destinations('E'))
+        self.assertEqual(
+			{'forward': None, 'left': '0/0/E', 'right': '0/0/W'},
+			self.r00.get_destinations('S'))
+        self.assertEqual(
+			{'forward': None, 'left': '0/0/S', 'right': '0/0/N'},
+			self.r00.get_destinations('W'))
+
 
 if __name__ == '__main__':
     unittest.main()

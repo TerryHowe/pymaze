@@ -21,16 +21,14 @@ def room(request, room_x, room_y, direction):
 	passages = Passage.objects.all()
 	theMaze = maze.Maze(passages)
 	room = theMaze.get_room(room_x, room_y)
-	destination = room.go_forward(direction)
+	destinations = room.go_destinations(direction)
 	maze_view = text_view.TextView().render(room, direction)
 	context = {
 		'room_x': room_x,
 		'room_y': room_y,
 		'direction': direction,
-		'direction_long': Passage.get_direction(direction),
-		'destination': destination,
 		'maze_view': maze_view,
-		'left_direction': theMaze.get_left_direction(direction),
-		'right_direction': theMaze.get_right_direction(direction),
+		'direction_long': Passage.get_direction(direction),
+		'destinations': destinations,
 	}
 	return HttpResponse(template.render(context, request))
