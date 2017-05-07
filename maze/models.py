@@ -29,7 +29,8 @@ class Passage(models.Model):
 		return(self.__repr__())
 
 	def __repr__(self):
-		return 'Passage(id=%d, room_x=%d, room_y=%d, direction=%s, destination=%d)' % (self.id, self.room_x, self.room_y, self.direction, self.destination.id)
+		dest = str(self.destination.id) if self.destination else 'None'
+		return('Passage(id=%d, room_x=%d, room_y=%d, direction=%s, destination=%s)' % (self.id, self.room_x, self.room_y, self.direction, dest))
 
 	class Meta:
 		unique_together = (('room_x', 'room_y', 'direction'),)
