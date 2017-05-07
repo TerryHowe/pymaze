@@ -3,11 +3,11 @@
 <pre>
 {{maze_view}}
 </pre>
-<a href="/maze/{{destinations['left']}}">left</a>
-{% if destinations['forward'] %}
-<a href="/maze/{{destinations['forward']}}">forward</a>
+<a href="/maze/{{left}}">left</a>
+{% if forward %}
+<a href="/maze/{{forward}}">forward</a>
 {% else %}
 forward
 {% endif %}
-<a href="/maze/{{destinations['right']}}">right</a>
+<a href="/maze/{{right}}">right</a>
 </ul>
