@@ -21,10 +21,7 @@ def room(request, room_x, room_y, direction):
 	passages = Passage.objects.all()
 	theMaze = maze.Maze(passages)
 	room = theMaze.get_room(room_x, room_y)
-	destination = None
-	for passage in Passage.objects.filter(room_x=room_x, room_y=room_y):
-		if passage.direction == direction:
-			destination = passage.destination
+	destination = room.go_forward(direction)
 	maze_view = text_view.TextView().render(room, direction)
 	context = {
 		'room_x': room_x,
