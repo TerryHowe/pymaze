@@ -154,9 +154,11 @@ R10_WEST = """
 class TestTextView(unittest.TestCase):
 
 	def setUp(self):
-		self.r10 = room.Room(1, 0, {})
-		self.r01 = room.Room(0, 1, {})
-		self.r00 = room.Room(0, 0, {'N':self.r01,'E':self.r10})
+		self.r10 = room.Room(1, 0)
+		self.r01 = room.Room(0, 1)
+		self.r00 = room.Room(0, 0)
+		self.r00.passages['N'] = self.r01
+		self.r00.passages['E'] = self.r10
 		self.r10.passages['W'] = self.r00
 		self.r01.passages['S'] = self.r00
 
