@@ -24,6 +24,10 @@ class Room(object):
 	def go_right(self, direction):
 		return(self.passages.get(self.get_right_direction(direction), None))
 
+	def get_backward_direction(self, direction):
+		idx = (self.COMPASS.index(direction) + 2) % len(self.COMPASS)
+		return(self.COMPASS[idx])
+
 	def get_destinations(self, direction):
 		left_direction = self.get_left_direction(direction)
 		right_direction = self.get_right_direction(direction)

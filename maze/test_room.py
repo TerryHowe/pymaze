@@ -44,6 +44,12 @@ class TestRoom(unittest.TestCase):
         self.assertEqual('W', self.r00.get_right_direction('S'))
         self.assertEqual('N', self.r00.get_right_direction('W'))
 
+    def test_get_backward_direction(self):
+        self.assertEqual('S', self.r00.get_backward_direction('N'))
+        self.assertEqual('W', self.r00.get_backward_direction('E'))
+        self.assertEqual('N', self.r00.get_backward_direction('S'))
+        self.assertEqual('E', self.r00.get_backward_direction('W'))
+
     def test_get_destinations(self):
         self.assertEqual(
 			{'forward': '0/1/N', 'left': '0/0/W', 'right': '0/0/E'},
