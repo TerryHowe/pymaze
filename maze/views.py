@@ -2,22 +2,22 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 # Create your views here.
-from django.http import HttpResponse
-from django.template import loader
 from .models import Passage
 import maze
 import text_view
 
 
 def index(request):
-	return HttpResponse("Welcome to the maze.")
+	return redirect('0/0/N', True)
+
 
 def room(request, room_x, room_y, direction):
 	room_x = int(room_x)
 	room_y = int(room_y)
-	template = loader.get_template('maze/room.html')
+
 	passages = Passage.objects.all()
 	theMaze = maze.Maze(passages)
 	room = theMaze.get_room(room_x, room_y)
@@ -31,4 +31,4 @@ def room(request, room_x, room_y, direction):
 		'direction_long': Passage.get_direction(direction),
 	}
 	context.update(destinations)
-	return HttpResponse(template.render(context, request))
+	return render(request, 'maze/room.html', context)
