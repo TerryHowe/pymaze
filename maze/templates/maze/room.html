@@ -5,6 +5,11 @@
 function goLeft() {
     window.location.href = "/maze/{{left}}";
 }
+function goBackward() {
+	{% if backward %}
+    window.location.href = "/maze/{{backward}}";
+	{% endif %}
+}
 function goRight() {
     window.location.href = "/maze/{{right}}";
 }
@@ -16,11 +21,14 @@ function goForward() {
 
 function keyDown(event) {
     switch (event.key) {
+    case 'e':
+        goForward();
+        break;
     case 's':
         goLeft();
         break;
-    case 'e':
-        goForward();
+    case 'd':
+        goBackward();
         break;
     case 'f':
         goRight();
@@ -35,13 +43,9 @@ addEventListener("keydown", keyDown);
 <pre>
 {{maze_view}}
 </pre>
-<a href="/maze/{{left}}">left</a>
-{% if forward %}
-<a href="/maze/{{forward}}">forward</a>
-{% else %}
-forward
-{% endif %}
-<a href="/maze/{{right}}">right</a>
-</ul>
+<b>e:</b> forward<br>
+<b>s:</b> left<br>
+<b>d:</b> backward<br>
+<b>f:</b> right<br>
 </body>
 </html>
