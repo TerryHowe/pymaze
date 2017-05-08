@@ -35,10 +35,14 @@ class Room(object):
 		left_direction = self.get_left_direction(direction)
 		right_direction = self.get_right_direction(direction)
 		forward = self.go_forward(direction)
+		backward = self.go_backward(direction)
 		if forward:
 			forward = ("%d/%d/%s" % (forward.room_x, forward.room_y, direction))
+		if backward:
+			backward = ("%d/%d/%s" % (backward.room_x, backward.room_y, direction))
 		return {
 			'left': ("%d/%d/%s" % (self.room_x, self.room_y, left_direction)),
 			'forward': forward,
-			'right': ("%d/%d/%s" % (self.room_x, self.room_y,  right_direction))
+			'right': ("%d/%d/%s" % (self.room_x, self.room_y,  right_direction)),
+			'backward': backward,
 		}

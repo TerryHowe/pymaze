@@ -57,17 +57,33 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(self.r10, self.r00.go_backward('W'))
 
     def test_get_destinations(self):
-        self.assertEqual(
-			{'forward': '0/1/N', 'left': '0/0/W', 'right': '0/0/E'},
+        self.assertEqual({
+				'forward': '0/1/N',
+				'left': '0/0/W',
+				'right': '0/0/E',
+				'backward': None
+			},
 			self.r00.get_destinations('N'))
-        self.assertEqual(
-			{'forward': '1/0/E', 'left': '0/0/N', 'right': '0/0/S'},
+        self.assertEqual({
+				'forward': '1/0/E',
+				'left': '0/0/N',
+				'right': '0/0/S',
+				'backward': None
+			},
 			self.r00.get_destinations('E'))
-        self.assertEqual(
-			{'forward': None, 'left': '0/0/E', 'right': '0/0/W'},
+        self.assertEqual({
+				'forward': None,
+				'left': '0/0/E',
+				'right': '0/0/W',
+				'backward': '0/1/S'
+			},
 			self.r00.get_destinations('S'))
-        self.assertEqual(
-			{'forward': None, 'left': '0/0/S', 'right': '0/0/N'},
+        self.assertEqual({
+				'forward': None,
+				'left': '0/0/S',
+				'right': '0/0/N',
+				'backward': '1/0/W'
+			},
 			self.r00.get_destinations('W'))
 
 
