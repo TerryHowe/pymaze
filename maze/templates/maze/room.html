@@ -21,16 +21,16 @@ function goForward() {
 
 function keyDown(event) {
     switch (event.key) {
-    case 'e':
+    case 'w':
         goForward();
         break;
-    case 's':
+    case 'a':
         goLeft();
         break;
-    case 'd':
+    case 's':
         goBackward();
         break;
-    case 'f':
+    case 'd':
         goRight();
         break;
     }
@@ -43,9 +43,9 @@ addEventListener("keydown", keyDown);
 <pre>
 {{maze_view}}
 </pre>
-<b>e:</b> forward<br>
-<b>s:</b> left<br>
-<b>f:</b> right<br>
-<b>d:</b> backward<br>
+<b>w:</b> forward<br>
+<b>a:</b> left<br>
+<b>d:</b> right<br>
+<b>s:</b> backward<br>
 </body>
 </html>
