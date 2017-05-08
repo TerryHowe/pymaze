@@ -16,5 +16,4 @@ class Maze(object):
 			from_room.passages[p.direction] = to_room
 
 	def get_room(self, room_x, room_y):
-		return self.map.get((room_x,room_y),
-							self.map.get((0,0), room.Room(room_x, room_y)))
+		return self.map.get((room_x,room_y), None)
