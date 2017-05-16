@@ -3,7 +3,7 @@ import unittest
 import room
 import text_view
 
-DEAD_END = """
+R01_NORTH = """
  \                              /
   \                            / 
    +--------------------------+  
@@ -24,7 +24,7 @@ DEAD_END = """
   /                            \\ 
  /                              \\
 """
-NORTH = """
+R00_NORTH = """
  \                               
   \                              
    +                          +--
@@ -45,7 +45,7 @@ NORTH = """
   /                              
  /                               
 """
-EAST = """
+R00_EAST = """
                                 /
                                / 
  --+                          +  
@@ -66,7 +66,7 @@ EAST = """
                                \\ 
                                 \\
 """
-SOUTH = """
+R00_SOUTH = """
                                 /
                                / 
  --+--------------------------+  
@@ -87,7 +87,7 @@ SOUTH = """
                                \\ 
                                 \\
 """
-WEST = """
+R00_WEST = """
  \                               
   \                              
    +--------------------------+--
@@ -164,23 +164,23 @@ class TestTextView(unittest.TestCase):
 
 	def test_render_dead_end(self):
 		sut = text_view.TextView()
-		self.assertEqual(DEAD_END, sut.render(self.r01, 'N'))
+		self.assertEqual(R01_NORTH, sut.render(self.r01, 'N'))
 
 	def test_render_r00_north(self):
 		sut = text_view.TextView()
-		self.assertEqual(NORTH, sut.render(self.r00, 'N'))
+		self.assertEqual(R00_NORTH, sut.render(self.r00, 'N'))
 
 	def test_render_r00_east(self):
 		sut = text_view.TextView()
-		self.assertEqual(EAST, sut.render(self.r00, 'E'))
+		self.assertEqual(R00_EAST, sut.render(self.r00, 'E'))
 
 	def test_render_r00_south(self):
 		sut = text_view.TextView()
-		self.assertEqual(SOUTH, sut.render(self.r00, 'S'))
+		self.assertEqual(ROO_SOUTH, sut.render(self.r00, 'S'))
 
 	def test_render_r00_west(self):
 		sut = text_view.TextView()
-		self.assertEqual(WEST, sut.render(self.r00, 'W'))
+		self.assertEqual(R00_WEST, sut.render(self.r00, 'W'))
 
 	def test_render_r01_south(self):
 		sut = text_view.TextView()
