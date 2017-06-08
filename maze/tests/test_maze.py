@@ -1,7 +1,7 @@
 import unittest
 import mock
 
-import maze
+from maze import maze
 
 
 class TestMaze(unittest.TestCase):

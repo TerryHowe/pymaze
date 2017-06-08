@@ -1,6 +1,6 @@
 import unittest
 
-import room
+from maze import room
 
 
 class TestRoom(unittest.TestCase):

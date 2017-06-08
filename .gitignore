@@ -91,3 +91,4 @@ MANIFEST
 .*.swp
 db.sqlite3
 pymaze/static
+.testrepository

@@ -1,7 +1,7 @@
 import unittest
 
-import room
-import text_view
+from maze import room
+from maze import text_view
 
 R01_NORTH = """
  \                              /
@@ -176,7 +176,7 @@ class TestTextView(unittest.TestCase):
 
 	def test_render_r00_south(self):
 		sut = text_view.TextView()
-		self.assertEqual(ROO_SOUTH, sut.render(self.r00, 'S'))
+		self.assertEqual(R00_SOUTH, sut.render(self.r00, 'S'))
 
 	def test_render_r00_west(self):
 		sut = text_view.TextView()

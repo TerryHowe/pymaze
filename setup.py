@@ -1,7 +1,7 @@
 from distutils.core import setup
 setup(
-  name = 'pymaze',
-  packages = ['pymaze'], # this must be the same as the name above
+  name = 'maze',
+  packages = ['maze'],
   version = '0.1',
   description = 'Python Maze',
   author = 'Terry Howe',
