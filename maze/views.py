@@ -7,8 +7,8 @@ from django.shortcuts import redirect
 
 # Create your views here.
 from .models import Passage
-import maze
-import text_view
+from maze import text_view
+from maze import maze
 
 
 def index(request):

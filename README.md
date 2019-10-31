@@ -37,3 +37,8 @@ do this exercise for Python using Django.
     --+                          +  
                                   \ 
                                    \
+
+To get started, run:
+
+    ./manage.py migrate
+    ./manage.py populate

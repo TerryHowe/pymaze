@@ -6,13 +6,13 @@ from maze import room
 class TestRoom(unittest.TestCase):
 
     def setUp(self):
-		self.r10 = room.Room(1, 0)
-		self.r01 = room.Room(0, 1)
-		self.r00 = room.Room(0, 0)
-		self.r00.passages['N'] = self.r01
-		self.r00.passages['E'] = self.r10
-		self.r10.passages['W'] = self.r00
-		self.r01.passages['S'] = self.r00
+        self.r10 = room.Room(1, 0)
+        self.r01 = room.Room(0, 1)
+        self.r00 = room.Room(0, 0)
+        self.r00.passages['N'] = self.r01
+        self.r00.passages['E'] = self.r10
+        self.r10.passages['W'] = self.r00
+        self.r01.passages['S'] = self.r00
 
     def test_go_forward(self):
         self.assertEqual(self.r01, self.r00.go_forward('N'))
@@ -58,33 +58,33 @@ class TestRoom(unittest.TestCase):
 
     def test_get_destinations(self):
         self.assertEqual({
-				'forward': '0/1/N',
-				'left': '0/0/W',
-				'right': '0/0/E',
-				'backward': None
-			},
-			self.r00.get_destinations('N'))
+                'forward': '0/1/N',
+                'left': '0/0/W',
+                'right': '0/0/E',
+                'backward': None
+            },
+            self.r00.get_destinations('N'))
         self.assertEqual({
-				'forward': '1/0/E',
-				'left': '0/0/N',
-				'right': '0/0/S',
-				'backward': None
-			},
-			self.r00.get_destinations('E'))
+                'forward': '1/0/E',
+                'left': '0/0/N',
+                'right': '0/0/S',
+                'backward': None
+            },
+            self.r00.get_destinations('E'))
         self.assertEqual({
-				'forward': None,
-				'left': '0/0/E',
-				'right': '0/0/W',
-				'backward': '0/1/S'
-			},
-			self.r00.get_destinations('S'))
+                'forward': None,
+                'left': '0/0/E',
+                'right': '0/0/W',
+                'backward': '0/1/S'
+            },
+            self.r00.get_destinations('S'))
         self.assertEqual({
-				'forward': None,
-				'left': '0/0/S',
-				'right': '0/0/N',
-				'backward': '1/0/W'
-			},
-			self.r00.get_destinations('W'))
+                'forward': None,
+                'left': '0/0/S',
+                'right': '0/0/N',
+                'backward': '1/0/W'
+            },
+            self.r00.get_destinations('W'))
 
 
 if __name__ == '__main__':

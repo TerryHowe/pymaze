@@ -1,4 +1,4 @@
-import room
+from maze import room
 
 
 class Maze(object):
